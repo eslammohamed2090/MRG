@@ -5,18 +5,19 @@ Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintelle
 For Module Support : devintelle@gmail.com  or Skype : devintelle 
  -->
 <odoo>
+    <data>
     <record id="view_account_move_print_cheque_form" model="ir.ui.view">
         <field name="name">view.account.move.print.cheque.form</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
             <xpath expr="//header//button[@name='button_cancel']" position="after">
-                <button name="%(action_invoice_print_cheque)d" type='action' 
+                <button name="%(action_invoice_print_cheque)d" type='action'
                     attrs="{'invisible':[('state','in',['draft','cancel'])]}" string='Print Cheque' class="oe_highlight"/>
             </xpath>
         </field>
     </record>
-    
+
 
     <record id="view_account_cheque_formate_form" model="ir.ui.view">
         <field name="name">account.voucher.formate.form.view</field>
@@ -31,4 +32,5 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
             </xpath>
         </field>
     </record>
+    </data>
 </odoo>

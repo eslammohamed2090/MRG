@@ -5,17 +5,17 @@ Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintelle
 For Module Support : devintelle@gmail.com  or Skype : devintelle 
  -->
 <odoo>
-    <record id="view_account_move_print_cheque_form" model="ir.ui.view">
-        <field name="name">view.account.move.print.cheque.form</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_form"/>
-        <field name="arch" type="xml">
-<!--            <xpath expr="//header//button[@name='button_cancel']" position="after">-->
-<!--                <button name="%(action_invoice_print_cheque)d" type='action' -->
-<!--                    attrs="{'invisible':[('state','in',['draft','cancel'])]}" string='Print Cheque' class="oe_highlight"/>-->
-<!--            </xpath>-->
-        </field>
-    </record>
+<!--    <record id="view_account_move_print_cheque_form" model="ir.ui.view">-->
+<!--        <field name="name">view.account.move.print.cheque.form</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="account.view_move_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--&lt;!&ndash;            <xpath expr="//header//button[@name='button_cancel']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;                <button name="%(action_invoice_print_cheque)d" type='action' &ndash;&gt;-->
+<!--&lt;!&ndash;                    attrs="{'invisible':[('state','in',['draft','cancel'])]}" string='Print Cheque' class="oe_highlight"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--        </field>-->
+<!--    </record>-->
     
 
     <record id="view_account_cheque_formate_form" model="ir.ui.view">

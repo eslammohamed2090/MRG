@@ -271,4 +271,5 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
 
 	<!--  Menu Items-->
     <menuitem name="Cheque Format" id="cheque_setting_menu" parent="account.menu_finance_configuration" action="cheque_setting_action" sequence="1" invisible="1"/>
+
 </odoo>

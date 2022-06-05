@@ -345,17 +345,14 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
                                 <tbody class="sale_tbody" t-attf-style="font-size:#{o.cheque_formate_id.font_size}px;">
                                     <tr>
                                         <td>
-                                           <span t-field="o.payment_date"/>
+                                           <span t-field="o.date"/>
                                         </td>
 
                                         <td>
                                            <span t-field="o.payment_type"/>
                                         </td>
 
-                                        <td>
-                                           <span t-field="o.communication"/>
-                                        </td>
-
+                                    
                                         <td class="text-right">
                                            <span t-field="o.amount"
                                             t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>

@@ -5,16 +5,24 @@ Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintelle
 For Module Support : devintelle@gmail.com  or Skype : devintelle 
  -->
 <odoo>
-        <report 
-            id="action_report_print_cheque"
-            string="Print Cheque"
-            model="dev.print.cheques.wizard"
-            report_type="qweb-pdf"
-            name="dev_print_cheque.report_print_cheque"
-            file="dev_print_cheque.report_print_cheque"
-        />
-        
-        
+
+<!--        <report -->
+<!--            id="action_report_print_cheque"-->
+<!--            string="Print Cheque"-->
+<!--            model="dev.print.cheques.wizard"-->
+<!--            report_type="qweb-pdf"-->
+<!--            name="dev_print_cheque.report_print_cheque"-->
+<!--            file="dev_print_cheque.report_print_cheque"-->
+<!--        />-->
+    <record id="action_report_print_cheque" model="ir.actions.report">
+        <field name="name">Print Cheque</field>
+        <field name="model">dev.print.cheques.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dev_print_cheque.report_print_cheque</field>
+        <field name="report_file">dev_print_cheque.report_print_cheque</field>
+        <field name="binding_model_id" ref="model_dev_print_cheques_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
         <record id="paperformat_cheque" model="report.paperformat">
             <field name="name">cheque A4</field>
             <field name="default" eval="True" />
@@ -34,6 +42,5 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
         <record id="dev_print_cheque.action_report_print_cheque" model="ir.actions.report">
 			<field name="paperformat_id" ref="dev_print_cheque.paperformat_cheque" />
 		</record>   
-		
-		
+
 </odoo>
