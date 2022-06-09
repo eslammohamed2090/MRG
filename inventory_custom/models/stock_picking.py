@@ -1,25 +1,16 @@
 # -*- coding: utf-8 -*-
-
+#
 from odoo import models, fields, api,_
 from odoo.exceptions import ValidationError
-
+#
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
+
     def button_validate(self):
         res = super(StockPicking, self).button_validate()
-        for rec in self:
-            if rec.picking_type_code != 'outgoing':
-                rec.change_secondary_quantity()
-                return res
-
-            else:
-                if any(line.quantity_done > line.product_id.qty_available for line in rec.move_ids_without_package):
-                    raise ValidationError(_("Quantity Done Cannot be more than quantity available "))
-                else:
-                    rec.change_secondary_quantity()
-                    return res
-
+        self.change_secondary_quantity()
+        return res
 
     def change_secondary_quantity(self):
         for picking in self:
@@ -31,6 +22,11 @@ class StockPicking(models.Model):
                 else:
                     continue
 
+        # @api.depend('quantity_done')
+        # def get_test_uom(self):
+        #     if self.quantity_done ==0 :
+        #         quantity_2=0
+        #
 
 
 class ProductProduct(models.Model):
