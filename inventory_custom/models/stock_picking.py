@@ -8,36 +8,22 @@ from odoo.exceptions import ValidationError
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    def button_validate(self):
-        res = super(StockPicking, self).button_validate()
+    def _action_done(self):
+        res = super(StockPicking, self)._action_done()
 
-        if self.picking_type_code == 'outgoing':
-            for x in self.move_ids_without_package:
-                # avail_qty = self.env['stock.quant']._get_available_quantity(x.product_id, x.location_dest_id)
-                qty = x.product_id.secondary_quantity
-                if qty < x.quantity_2:
+        for move in self.mapped("move_ids_without_package").filtered(lambda m: m.quantity_done != 0):
+            if move.picking_code == "outgoing":
+                qty = move.product_id.secondary_quantity
+                if qty < move.quantity_2:
                     raise ValidationError(
                         _("Quantity 2 of Product %s must be less than or equal to %s") % (
-                            x.product_id.display_name, qty))
+                            move.product_id.display_name, qty))
 
-        self.change_secondary_quantity()
+                move.product_id.secondary_quantity = move.product_id.secondary_quantity - move.quantity_2
+            elif move.picking_code == "incoming":
+                move.product_id.secondary_quantity = move.product_id.secondary_quantity + move.quantity_2
+
         return res
-
-    def change_secondary_quantity(self):
-        for picking in self:
-            for move in picking.move_ids_without_package:
-                if picking.picking_type_code == 'outgoing':
-                    move.product_id.secondary_quantity = move.product_id.secondary_quantity - move.quantity_2
-                elif picking.picking_type_code == 'incoming':
-                    move.product_id.secondary_quantity = move.product_id.secondary_quantity + move.quantity_2
-                else:
-                    continue
-
-        # @api.depend('quantity_done')
-        # def get_test_uom(self):
-        #     if self.quantity_done ==0 :
-        #         quantity_2=0
-        #
 
 
 class ProductProduct(models.Model):
