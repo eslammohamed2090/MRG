@@ -35,9 +35,9 @@ class ProductProduct(models.Model):
     @api.constrains("secondary_quantity", "qty_available")
     def check_secondary_quantity(self):
         for product in self:
-            if product.secondary_quantity == 0 and product.qty_available != 0:
-                raise ValidationError(
-                    _("Secondary quantity of product %s must be positive when quantity available is not equal to zero") % product.display_name)
+            # if product.secondary_quantity == 0 and product.qty_available != 0:
+            #     raise ValidationError(
+            #         _("Secondary quantity of product %s must be positive when quantity available is not equal to zero") % product.display_name)
             if product.secondary_quantity != 0 and product.qty_available == 0:
                 raise ValidationError(
                     _("Secondary quantity of product %s must be zero when quantity available is equal to zero") % product.display_name)
