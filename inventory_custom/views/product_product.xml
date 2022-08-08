@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_product_inh_form" model="ir.ui.view">
+            <field name="name">product_product_inh_form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='uom_id']" position="after">
+                    <field name="secondary_uom_id"/>
+                    <field name="secondary_quantity"/>
+                </xpath>
+                <xpath expr="//button[@class='oe_stat_button']" position="after">
+                    <div class="o_field_widget o_stat_info" >
+                        <span class="o_stat_value" style="margin-top:20px;margin-right:10px;font-weight:bold">
+                        <field name="secondary_quantity" widget="statinfo" nolabel="1" class="mr4"/>
+                        >
+                        </span>
+                        <br/>
+                        <span class="o_stat_text">S On Hand</span>
+                       </div>
+
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
